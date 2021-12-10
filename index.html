@@ -9,40 +9,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-    
+<body>
     <div id="root">
         <div class="my_container">
+            <!-- main title -->
             <h2>TO DO LIST</h2>
             <div class="list_container">
+                <!-- filters -->
                 <div class="my_filters">
                     <div class="single_filter">
-                        <label for="new-element">Inserisci nuovo elemnto: </label>
+                        <label for="new-element">New Task: </label>
                         <input @keyup.enter="addNewToDo" v-model="newToDos" type="text" id="new-element" placeholder="ineserisci nota" class="input_box">
                         <button @click="addNewToDo" class="btn_input">Aggiungi</button>
                     </div>
                 </div>
 
+                <!-- task list -->
                 <div class="todo_list">
-                    <ul>
-                        <li v-for="(single_todo, index) in toDos" class="single_todo" :class="{'done': toDos.done}" @click="toggleCheck(index)">
-                            <span class="check_icon">
+                    <ul v-if="toDos.length > 0">
+                        <li v-for="(single_todo, index) in toDos" class="single_todo" :class="{'done': single_todo.done}">
+                            <!-- <span class="check_icon">
                                 <i class="fas fa-check"></i>
-                            </span>
-                            {{index}}
-                            {{ single_todo.text }}
+                            </span> -->
+                            <!-- {{index}} -->
+                            <div class="todo_text" @click="toggleCheck(index)">
+                                {{ single_todo.text }}
+                            </div>
                         
                             <div class="todo_actions">
-                                <i @click="deleteTodo" class="far fa-trash-alt"></i>
+                                <i @click="deleteTodo(index)" class="far fa-trash-alt"></i>
                             </div>
                         </li>
                     </ul>
+                    <!-- alternative text -->
+                    <h2 v-else class="title">Non ci sono task</h2>
+
                 </div>
             </div>
         </div>
-        <!-- :class="{'done': toDos.done}" -->
-
     </div>
 
 <script type="text/javascript" src="js/script.js"></script>

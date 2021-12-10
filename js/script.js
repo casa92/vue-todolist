@@ -13,22 +13,22 @@ const app = new Vue(
 
                 {
                     text: 'compare il latte',
-                    done: true
+                    done: false
                 },
 
                 {
                     text: 'compare il vino',
-                    done: true
+                    done: false
                 },
 
                 {
                     text: 'compare il burro',
-                    done: true
+                    done: false
                 },
 
                 {
                     text: 'compare il pesce',
-                    done: true
+                    done: false
                 }
             ]
 
@@ -48,11 +48,18 @@ const app = new Vue(
             //elimina elemento corrispondente
             deleteTodo: function(index) {
                 this.toDos.splice(index, 1);
-            },
 
+                // if(this.toDos.length === 0) {
+                //     const noTaskTitle = document.getElementById('noTaskAdded');
+                //     noTaskTitle.classList.remove('title');
+                // }
+            },
+            //al click su li modifico la chiave done da true a false e viceversa
             toggleCheck: function(index) {
                 this.toDos[index].done = !this.toDos[index].done;
+                // alert(index);
             }
+
         }
     }
 );
